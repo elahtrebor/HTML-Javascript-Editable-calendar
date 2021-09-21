@@ -1,0 +1,55 @@
+<html>
+
+<script>
+
+function days (month, year) {
+         return new Date(year, month, 0).getDate();
+};
+
+function drawCal(){
+
+ let months = ['ZERO' ,'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October' , 'November', 'December']
+var yr = new Date().getFullYear()
+
+ // Write the title
+ document.write("<center><h3>" + yr + "</h3></center>")
+ document.write("<div><hr></div>")
+ document.write("<center>")
+
+
+ for(var i = 1; i <= 12; i++){      
+      document.write("<h3>" + months[i] + " " + yr + "</h3>")
+      document.write("<table border = 1 style=\"border-collapse: collapse\">")
+       var dow = new Date(yr + "-" + i + "-01").getDay();
+       dow = dow + 1;
+       if(i > 9) { dow = dow + 1; }
+        d = 1;
+        // PRINT THE HEADER OF THE MONTH
+       document.write("<tr style = 'background:  LightGray'><td><b>SUN</b></td><td><b>MON</b></td><td><b>TUE</b></td><td><b>WED</b></td><td><b>THU</b></td><td><b>FRI</b></td><td><b>SAT</b></td></tr>")
+      var x = 1;
+     // print empty days up to the start day
+      document.write("<tr>");
+       for (var n = 1; n < dow;n++){
+         document.write("<td></td>");
+          x++; 
+         }
+       var dc = x;
+       for (x = 1; x <= days(i, yr);x++){
+        if(dc == 7 ){ document.write("<td contenteditable>" + "<pre>" + x +  "<br></br><br></br></pre>" + "</td></tr><tr>")  
+         dc = 1;}
+         else {
+           document.write("<td contenteditable>" + "<pre>" + x + "<br></br><br></br></pre>" + "</td>")
+           dc++;
+         }        
+     }
+         document.write("</tr>")
+         document.write("</table><br></br>")
+         document.write("<div><hr></div>")
+
+  } 
+
+}
+
+</script>
+<body onload= "drawCal()">
+</html>
